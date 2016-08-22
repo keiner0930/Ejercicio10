@@ -68,6 +68,11 @@ public class Principal10 extends javax.swing.JFrame {
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         cmdBorrar.setText("Borar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,8 +90,26 @@ public class Principal10 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
-        // TODO add your handling code here:
+    String monto;
+    int nfotos,iva,total,tfotos;
+    
+    nfotos= Integer.parseInt(txtFotos.getText());
+    
+    tfotos= 1500*nfotos;
+    iva= (tfotos*16)/100;    
+    total=tfotos+iva;
+
+    monto=String.valueOf(total);
+    txtMonto.setText(monto);
+        
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     txtFotos.setText("");
+     txtMonto.setText("");
+     txtFotos.requestFocusInWindow();
+       
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
