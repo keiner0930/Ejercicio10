@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sony
@@ -49,6 +51,12 @@ public class Principal10 extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 0, 153));
         jLabel2.setText("Numero de Fotos");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 200, -1));
+
+        txtFotos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFotosKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtFotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 50, 30));
 
         jLabel3.setFont(new java.awt.Font("Traditional Arabic", 3, 18)); // NOI18N
@@ -93,6 +101,14 @@ public class Principal10 extends javax.swing.JFrame {
     String monto;
     int nfotos,iva,total,tfotos;
     
+    if(txtFotos.getText().isEmpty()){
+     getToolkit().beep();
+     JOptionPane.showMessageDialog(this, "Digite El Numero de Fotos","Error",JOptionPane.ERROR_MESSAGE);
+     txtFotos.requestFocusInWindow();
+     }
+    
+    else{
+        
     nfotos= Integer.parseInt(txtFotos.getText());
     
     tfotos= 1500*nfotos;
@@ -101,7 +117,8 @@ public class Principal10 extends javax.swing.JFrame {
 
     monto=String.valueOf(total);
     txtMonto.setText(monto);
-        
+    
+    }    
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -110,6 +127,14 @@ public class Principal10 extends javax.swing.JFrame {
      txtFotos.requestFocusInWindow();
        
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtFotosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFotosKeyTyped
+    char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          }  
+    }//GEN-LAST:event_txtFotosKeyTyped
 
     /**
      * @param args the command line arguments
